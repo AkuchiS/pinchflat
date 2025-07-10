@@ -16,7 +16,7 @@ variables
 color
 catch_errors
 
-build_container
+start
 description
 
 msg_info "Running Install Script"
