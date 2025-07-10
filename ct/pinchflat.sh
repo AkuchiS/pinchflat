@@ -16,6 +16,14 @@ variables
 color
 catch_errors
 
+# Default fallback values if start() fails to set them
+CTID="${CTID:-115}"
+HN="${HN:-pinchflat}"
+DISK_SIZE="${DISK_SIZE:-10}"
+RAM_SIZE="${RAM_SIZE:-2048}"
+CPU_CORES="${CPU_CORES:-1}"
+BRG="${BRG:-vmbr0}"
+
 start
 description
 
