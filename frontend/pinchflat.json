@@ -1,0 +1,13 @@
+{
+  "name": "Pinchflat",
+  "description": "CLI utility for managing disk images like .img, .qcow2, and .vmdk.",
+  "repo": "https://github.com/kieraneglin/pinchflat",
+  "developer": "kieraneglin",
+  "maintainer": "AkuchiS",
+  "type": "ct",
+  "network": "bridge",
+  "unprivileged": true,
+  "icon": "mdi-harddisk",
+  "tags": ["cli", "utility", "disk", "image"]
+}
+
