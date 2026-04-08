@@ -1,38 +1,47 @@
 #!/usr/bin/env bash
+source <(curl -s https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+# Copyright (c) 2024 community-scripts ORG
+# Author: AkuchiS
+# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 
-source /dev/stdin <<<"$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVED/main/misc/build.func)"
-
+# App metadata
 APP="Pinchflat"
-var_tags="utility;cli;disk"
-var_cpu="1"
+var_tags="media;youtube;docker"
+var_cpu="2"
 var_ram="2048"
 var_disk="10"
 var_os="debian"
 var_version="12"
 var_unprivileged="1"
 
-header_info "$APP"
-variables
-color
-catch_errors
+# UPDATE FUNCTION
+# Called when script is run on an already-installed container
+update_script() {
+  header_info
+  check_container_storage
+  check_container_resources
 
-# Default fallback values if start() fails to set them
-CTID="${CTID:-115}"
-HN="${HN:-pinchflat}"
-DISK_SIZE="${DISK_SIZE:-10}"
-RAM_SIZE="${RAM_SIZE:-2048}"
-CPU_CORES="${CPU_CORES:-1}"
-BRG="${BRG:-vmbr0}"
+  if [[ ! -f /opt/pinchflat/docker-compose.yml ]]; then
+    msg_error "No Pinchflat installation found in /opt/pinchflat"
+    exit 1
+  fi
+
+  msg_info "Pulling latest Pinchflat image"
+  docker compose -f /opt/pinchflat/docker-compose.yml pull
+  msg_ok "Image updated"
+
+  msg_info "Restarting Pinchflat"
+  docker compose -f /opt/pinchflat/docker-compose.yml up -d
+  msg_ok "Pinchflat restarted"
+
+  exit
+}
 
 start
+build_container
 description
 
-msg_info "Running Install Script"
-lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://raw.githubusercontent.com/AkuchiS/pinchflat/main/install/pinchflat-install.sh)"
-msg_ok "Installed ${APP}"
-
-echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
-echo -e "${INFO}${YW} Access it using:${CL}"
-echo -e "${TAB}${GN}pct console $CTID${CL}"
-echo -e "${TAB}${GN}pinchflat${CL}"
-
+msg_ok "Completed Successfully!"
+echo -e "${CREATING}${GN}${APP} setup has been completed successfully!${CL}"
+echo -e "${INFO}${YW} Access Pinchflat at:${CL}"
+echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:8945${CL}"
