@@ -14,7 +14,7 @@ var_os="debian"
 var_version="12"
 var_unprivileged="1"
 
-# UPDATE FUNCTION
+# ── UPDATE FUNCTION ───────────────────────────────────────────
 # Called when script is run on an already-installed container
 update_script() {
   header_info
@@ -39,6 +39,13 @@ update_script() {
 
 start
 build_container
+
+# Explicitly call install script from this repo — build.func resolves
+# scripts from community-scripts/ProxmoxVE, not from AkuchiS/pinchflat
+msg_info "Running Pinchflat install script"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/AkuchiS/pinchflat/main/install/pinchflat-install.sh)"
+msg_ok "Pinchflat installed"
+
 description
 
 msg_ok "Completed Successfully!"
