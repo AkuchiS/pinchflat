@@ -1,5 +1,9 @@
 # pinchflat — Proxmox LXC Installer
 
+[![License](https://img.shields.io/github/license/AkuchiS/pinchflat?color=8A2BE2)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/AkuchiS/pinchflat?color=8A2BE2)](https://github.com/AkuchiS/pinchflat/commits)
+[![Stars](https://img.shields.io/github/stars/AkuchiS/pinchflat?color=8A2BE2)](https://github.com/AkuchiS/pinchflat/stargazers)
+
 Installs [Pinchflat](https://github.com/kieraneglin/pinchflat) as a Docker container inside a Proxmox LXC.
 
 Pinchflat is a self-hosted YouTube media manager built with Elixir/Phoenix. It automatically downloads videos from channels and playlists using yt-dlp and integrates with media servers like Plex and Jellyfin.
