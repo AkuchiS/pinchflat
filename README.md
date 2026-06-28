@@ -67,3 +67,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/AkuchiS/pinchflat/main/c
 ## License
 
 MIT
+
+---
+
+<sub>An [AkuchiS](https://github.com/AkuchiS) tool · more at [github.akuchis.com](https://github.akuchis.com) · [Sponsor the work](https://github.com/sponsors/AkuchiS)</sub>
